@@ -44,7 +44,7 @@
         <div class="script-card hover-glow" data-animation-delay="400">
             <div class="script-title">For Test</div>
             <div class="script-input-container">
-                <input type="text" id="scriptOtherInput" value='secret' readonly>
+                <input type="text" id="Copyscript1Input" value='secret' readonly>
                 <button class="copy-btn ripple-effect" onclick="Copyscript1()">
                     <i class="fas fa-copy"></i>
                 </button>
@@ -86,6 +86,23 @@
             }).catch(() => {
                 document.execCommand('copy');
                 showToast('Aimbot/ESP Script copied to clipboard!');
+                addCopyAnimation(copyBtn);
+            });
+        }
+
+        function Copyscript1() {
+            const Copyscript1Input = document.getElementById('Copyscript1Input');
+            const copyBtn = document.querySelector('#Copyscript1Input').nextElementSibling;
+            
+            Copyscript1Input.select();
+            Copyscript1Input.setSelectionRange(0, 99999);
+            
+            navigator.clipboard.writeText(Copyscript1Input.value).then(() => {
+                showToast('Test Script copied to clipboard!');
+                addCopyAnimation(copyBtn);
+            }).catch(() => {
+                document.execCommand('copy');
+                showToast('Test Script copied to clipboard!');
                 addCopyAnimation(copyBtn);
             });
         }

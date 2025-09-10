@@ -216,6 +216,26 @@ body {
     background: rgba(0, 0, 0, 0.9);
 }
 
+#Copyscript1Input {
+    flex: 1;
+    padding: 18px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(34, 197, 94, 0.4);
+    border-radius: 16px;
+    color: #ffffff;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(34, 197, 94, 0.1);
+}
+
+#Copyscript1Input:focus {
+    border-color: #22c55e;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(34, 197, 94, 0.2), 0 0 20px rgba(34, 197, 94, 0.1);
+    background: rgba(0, 0, 0, 0.9);
+}
+
 .copy-btn {
     padding: 18px;
     background: linear-gradient(135deg, #06b6d4, #0891b2);
