@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisl Universal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="floating-particles" id="particles"></div>
+    <div class="container">
+        <div class="header-card hover-glow" data-animation-delay="0">
+            <div class="profile-placeholder pulse-effect">
+                <i class="fas fa-crown"></i>
+            </div>
+            <div class="main-title">Wisl Universal</div>
+            <div class="discord-buttons">
+                <button class="discord-btn primary ripple-effect" onclick="joinDiscord()">
+                    <i class="fab fa-discord"></i>
+                    Join Discord
+                </button>
+            </div>
+        </div>
+        <div class="script-card hover-glow" data-animation-delay="200">
+            <div class="script-title">Wisl Universal Script</div>
+            <div class="script-input-container">
+                <input type="text" id="scriptInput" value='loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/main/Wisl%27i%20Universal%20Project.lua", true))()' readonly>
+                <button class="copy-btn ripple-effect" onclick="copyScript()">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+        <div class="script-card hover-glow" data-animation-delay="400">
+            <div class="script-title">Wisl Universal Esp / Aimbot</div>
+            <div class="script-input-container">
+                <input type="text" id="scriptOtherInput" value='loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/WIslAimbotEsp.lua", true))()' readonly>
+                <button class="copy-btn ripple-effect" onclick="copyScriptOther()">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+        <div class="script-card hover-glow" data-animation-delay="400">
+            <div class="script-title">For Test</div>
+            <div class="script-input-container">
+                <input type="text" id="scriptOtherInput" value='secret' readonly>
+                <button class="copy-btn ripple-effect" onclick="Copyscript1()">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+        
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Script copied to clipboard!</span>
+    </div>
+    <script>
+        function copyScript() {
+            const scriptInput = document.getElementById('scriptInput');
+            const copyBtn = document.querySelector('#scriptInput').nextElementSibling;
+            
+            scriptInput.select();
+            scriptInput.setSelectionRange(0, 99999);
+            
+            navigator.clipboard.writeText(scriptInput.value).then(() => {
+                showToast('Script copied to clipboard!');
+                addCopyAnimation(copyBtn);
+            }).catch(() => {
+                document.execCommand('copy');
+                showToast('Script copied to clipboard!');
+                addCopyAnimation(copyBtn);
+            });
+        }
+
+        function copyScriptOther() {
+            const scriptOtherInput = document.getElementById('scriptOtherInput');
+            const copyBtn = document.querySelector('#scriptOtherInput').nextElementSibling;
+            
+            scriptOtherInput.select();
+            scriptOtherInput.setSelectionRange(0, 99999);
+            
+            navigator.clipboard.writeText(scriptOtherInput.value).then(() => {
+                showToast('Aimbot/ESP Script copied to clipboard!');
+                addCopyAnimation(copyBtn);
+            }).catch(() => {
+                document.execCommand('copy');
+                showToast('Aimbot/ESP Script copied to clipboard!');
+                addCopyAnimation(copyBtn);
+            });
+        }
+
+        function addCopyAnimation(button) {
+            button.classList.add('copied');
+            button.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                button.style.transform = '';
+                button.classList.remove('copied');
+            }, 1500);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        function joinDiscord() {
+            window.open('https://discord.gg/XSUduWp52q', '_blank');
+        }
+
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        function initScrollAnimations() {
+            const cards = document.querySelectorAll('.header-card, .script-card');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -100px 0px',
+                threshold: 0.1
+            };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const card = entry.target;
+                    const delay = parseInt(card.getAttribute('data-animation-delay')) || 0;
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            card.classList.remove('card-hidden');
+                            card.classList.add('card-visible');
+                        }, delay);
+                    } else {
+                        card.classList.remove('card-visible');
+                        card.classList.add('card-hidden');
+                    }
+                });
+            }, observerOptions);
+            cards.forEach(card => {
+                card.classList.add('card-hidden');
+                observer.observe(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            initScrollAnimations();
+            
+            const buttons = document.querySelectorAll('.copy-btn, .discord-btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px) scale(1.05)';
+                });
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+            
+            const inputs = document.querySelectorAll('input[type="text"]');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                });
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
