@@ -647,3 +647,33 @@ input[type="text"]:focus { transform: translateY(-1px); box-shadow: inset 0 2px 
 .pulse-effect { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 .ripple-effect { position: relative; overflow: hidden; }
 .ripple-effect:active::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,0.35), transparent 40%); }
+
+:root { --container-max: 720px; }
+.container { max-width: var(--container-max); width: 100%; }
+.main-title { font-size: clamp(28px, 6vw, 48px); }
+.script-title { font-size: clamp(18px, 3.8vw, 28px); }
+input[type="text"] { font-size: clamp(13px, 1.8vw, 16px); }
+.discord-buttons { flex-wrap: wrap; gap: 12px; }
+.discord-btn { min-width: 180px; }
+.panel-head { padding: 18px 22px; }
+.code-panel { padding: 18px; }
+.header-card { width: 100%; }
+.script-card { width: 100%; }
+
+@media (max-width: 480px) {
+    .container { padding: 18px; gap: 18px; }
+    .header-card, .script-card { padding: 24px 18px; border-radius: 18px; }
+    .profile-placeholder { width: 72px; height: 72px; font-size: 26px; }
+    .discord-buttons { flex-direction: column; align-items: stretch; }
+    .discord-btn { width: 100%; max-width: 100%; }
+    .script-input-container { flex-direction: column; align-items: stretch; }
+    .copy-btn { width: 100%; min-width: 0; }
+    .panel-head { padding: 16px 18px; }
+    .title-wrap .heading { font-size: 18px; }
+}
+
+@media (min-width: 1024px) {
+    :root { --container-max: 860px; }
+    .panel-head { padding: 24px 28px; }
+    .code-panel { padding: 22px 24px; }
+}
