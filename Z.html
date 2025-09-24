@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Wisl Universal</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -58,15 +58,6 @@
                 </div>
             </div>
         </div>
-        <div class="script-card hover-glow" data-animation-delay="600">
-            <div class="script-title">For Test</div>
-            <div class="script-input-container">
-                <input type="text" id="Copyscript1Input" value='secret' readonly>
-                <button class="copy-btn ripple-effect" onclick="Copyscript1()">
-                    <i class="fas fa-copy"></i>
-                </button>
-            </div>
-        </div>
     </div>
     <div id="toast" class="toast">
         <i class="fas fa-check-circle"></i>
@@ -98,20 +89,6 @@
             }).catch(() => {
                 document.execCommand('copy');
                 showToast('Aimbot/ESP Script copied to clipboard!');
-                addCopyAnimation(copyBtn);
-            });
-        }
-        function Copyscript1() {
-            const Copyscript1Input = document.getElementById('Copyscript1Input');
-            const copyBtn = document.querySelector('#Copyscript1Input').nextElementSibling;
-            Copyscript1Input.select();
-            Copyscript1Input.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(Copyscript1Input.value).then(() => {
-                showToast('Test Script copied to clipboard!');
-                addCopyAnimation(copyBtn);
-            }).catch(() => {
-                document.execCommand('copy');
-                showToast('Test Script copied to clipboard!');
                 addCopyAnimation(copyBtn);
             });
         }
